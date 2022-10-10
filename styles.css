@@ -1,0 +1,89 @@
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: monospace;
+  font-size: 24px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+#page-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(94, 94, 94);
+  color: white;
+}
+
+#page-header h1 {
+  font-size: 2.5em;
+  font-weight: 500;
+  margin: 40px 100px;
+}
+
+#page-header ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  list-style: none;
+  padding-right: 50px;
+}
+
+#page-header a {
+  display: block;
+  padding: 0.5em;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+#page-header a:hover {
+  color:rgba(0, 0, 0, 0.6)
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr 1000px 1fr;
+  grid-template-areas: 'a b c';
+  height: 100%;
+  width: 100%;
+}
+
+#flex-container {
+  grid-area: b;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: aqua;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+td, th {
+  border: 1px solid black;
+}
+
+#add-entry {
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #2EC4B6;
+  padding: 25px;
+}
+

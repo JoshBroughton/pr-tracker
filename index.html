@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PR Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header id="page-header">
+      <h1>Rep Max Tracker</h1>
+      <nav>
+        <ul>
+          <li><a href="#data-summary">Table</a></li>
+          <li><a href="#add-row">Add Entry</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <div id="flex-container">
+        <div id="data-summary">
+          <table id="table">
+            <tr>
+              <th>Number of reps</th>
+              <th>Personal Record</th>
+              <th>Estiamted 1 Rep Max</th>
+              <th>Date</th>
+            </tr>
+          </table>
+        </div>
+        <div id="add-row">
+          <h3>Add Row</h3>
+          <form id="add-entry">
+            <label for="reps-input">Reps:</label>
+            <input type="number" id="reps-input" min="1" max="20">
+            <label for="PR-weight-input">Weight</label>
+            <input type="number" id="PR-weight-input" min="0" max="1100">
+            <label for="date-input">Date</label>
+            <input type="date" id="date-input">
+            <button id="add-entry-button">Add Entry</button>
+          </form>
+        </div> 
+      </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="main.js" type="module"></script>  
+  </body>
+</html>
