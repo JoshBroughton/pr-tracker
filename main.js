@@ -1,15 +1,29 @@
-const table = document.getElementById('table');
+import Entry from './entry.js';
 
-function generateTable() {
+const table = document.getElementById('table');
+const data = [];
+const entryButton = document.getElementById('add-entry-button');
+
+entryButton.addEventListener('click', addEntry)
+
+function generateDataArray() {
   for (let i = 1; i < 21; i++) {
-    const tableRow = document.createElement('tr');
-    tableRow.id = `row-${i}`;
-    insertTableData(tableRow, i);
-    table.appendChild(tableRow);
+    data.push(new Entry(i));
   }
 }
 
-function insertTableData(row, reps, pr = 0, e1rm = 0, date = new Date()) {
+generateDataArray();
+
+function generateTable() {
+  data.forEach((entry, i) => {
+    const tableRow = document.createElement('tr');
+    tableRow.id = `row-${i + 1}`;
+    insertTableData(tableRow, entry);
+    table.appendChild(tableRow);
+  })
+}
+
+function insertTableData(row, entryObj) {
   const repCell = document.createElement('td');
   const prCell = document.createElement('td');
   const e1rmCell = document.createElement('td');
@@ -20,32 +34,46 @@ function insertTableData(row, reps, pr = 0, e1rm = 0, date = new Date()) {
   e1rmCell.className = 'tableData';
   dateCell.className = 'tableData';
 
-  repCell.innerText = reps;
-  prCell.innerText = pr;
-  e1rmCell.innerText = e1rm;
-  dateCell.innerText = formatDate(date);
+  repCell.innerText = entryObj.getReps();
+  prCell.innerText = entryObj.getWeight();
+  e1rmCell.innerText = entryObj.getE1rm();
+  dateCell.innerText = entryObj.getDate();
 
   row.append(repCell, prCell, e1rmCell, dateCell);
 }
 
-function formatDate(date) {
-  let dateString = date.toDateString();
-  dateString = dateString.slice(4, 10) + ',' + dateString.slice(10); 
-  return dateString;
-}
 
-function addEntry() {
+function addEntryToArray() {
   const repsInput = document.getElementById('reps-input');
   const weightInput = document.getElementById('PR-weight-input');
   const dateInput = document.getElementById('date-input');
   const reps = repsInput.value;
   const weight = weightInput.value;
-  const date = dateInput.value;
+  const date = new Date(dateInput.value);
+  console.log(date);
   repsInput.value = 0;
   weightInput.value = 0;
-  dateInput.value = new Date();
-
-  const repsCell = document.querySelector(`#row-${reps}:nth-child(2)`);
+  
+  const entry = new Entry(reps, weight, date);
+  data[reps - 1] = entry;
+  return entry;
 }
+
+function addEntryToTable(entry) {
+  const row = document.getElementById(`row-${entry.getReps()}`);
+  insertTableData(row, entry);
+}
+
+function clearEntryFromTable(reps) {
+  const row = document.getElementById(`row-${reps}`);
+  row.innerHTML = '';
+}
+
+function addEntry() {
+  const entry = addEntryToArray();
+  clearEntryFromTable(entry.getReps());
+  addEntryToTable(entry);
+}
+
 
 generateTable();
