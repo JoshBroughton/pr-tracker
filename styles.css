@@ -65,13 +65,12 @@ main {
   color: white;
   width: 100%;
   margin: 0;
-  padding: 0;
+  padding: 20px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  
 }
 
 td, th {
