@@ -49,7 +49,17 @@ function addEntryToArray() {
   const dateInput = document.getElementById('date-input');
   const reps = repsInput.value;
   const weight = weightInput.value;
-  const date = new Date(dateInput.value);
+  let date = new Date(dateInput.value);
+  console.log(date);
+  date = new Date(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds(),
+    date.getUTCMilliseconds(),
+  );
   console.log(date);
   repsInput.value = 0;
   weightInput.value = 0;

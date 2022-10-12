@@ -7,7 +7,15 @@ class Entry {
   constructor(reps, weight = 0, date = new Date) {
     this.#reps = reps;
     this.#weight = weight;
-    this.#date = date;
+    this.#date = new Date(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+      date.getUTCMilliseconds(),
+    );
     this.#e1rm = this.#estimate1RepMax();
   }
 
