@@ -58,6 +58,10 @@ class Entry {
   setDate(date) {
     this.#date = date;
   }
+
+  saveString() {
+    const string = [string(this.#reps), string(this.#weight), getDate()];
+  }
 }
 
 export default Entry

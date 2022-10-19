@@ -79,10 +79,16 @@ function clearEntryFromTable(reps) {
   row.innerHTML = '';
 }
 
+function saveEntryToLocalStorage(entry) {
+  const entryStringArray = entry.saveString();
+  localStorage.setItem(entryStringArray[0], entryStringArray);
+}
+
 function addEntry() {
   const entry = addEntryToArray();
   clearEntryFromTable(entry.getReps());
   addEntryToTable(entry);
+  saveEntryToLocalStorage(entry);
 }
 
 
