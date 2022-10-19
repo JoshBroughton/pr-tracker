@@ -3,12 +3,16 @@ import Entry from './entry.js';
 const table = document.getElementById('table');
 const data = [];
 const entryButton = document.getElementById('add-entry-button');
-
+const savedData = 
 entryButton.addEventListener('click', addEntry)
 
 function generateDataArray() {
   for (let i = 1; i < 21; i++) {
-    data.push(new Entry(i));
+    if(localStorage.getItem(`${i}-weight`)) {
+      data.push(new Entry(i, localStorage.getItem(`${i}-weight`), new Date(localStorage.getItem(`${i}-date`))));
+    } else {
+      data.push(new Entry(i));
+    }
   }
 }
 
@@ -80,8 +84,8 @@ function clearEntryFromTable(reps) {
 }
 
 function saveEntryToLocalStorage(entry) {
-  const entryStringArray = entry.saveString();
-  localStorage.setItem(entryStringArray[0], entryStringArray);
+  localStorage.setItem(`${entry.getReps()}-weight`, `${entry.getWeight()}`);
+  localStorage.setItem(`${entry.getReps()}-date`, `${entry.getDate()}`);
 }
 
 function addEntry() {

@@ -60,7 +60,9 @@ class Entry {
   }
 
   saveString() {
-    const string = [string(this.#reps), string(this.#weight), getDate()];
+    const saveString = [String(this.#reps), String(this.#weight), this.getDate()];
+    console.log(saveString);
+    return saveString;
   }
 }
 
