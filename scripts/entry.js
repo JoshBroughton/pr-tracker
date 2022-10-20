@@ -3,10 +3,13 @@ class Entry {
   #weight
   #date
   #e1rm
+  #lift
+  
 
-  constructor(reps, weight = 0, date = new Date) {
+  constructor(reps, lift, weight = 0, date = new Date) {
     this.#reps = reps;
     this.#weight = weight;
+    this.#lift = lift;
     this.#date = new Date(
       date.getUTCFullYear(),
       date.getUTCMonth(),
@@ -45,6 +48,10 @@ class Entry {
     return this.#e1rm.toFixed();
   }
 
+  getLift() {
+    return this.#lift;
+  }
+
   setReps(reps) {
     this.#reps = reps;
     this.#e1rm = this.#estimate1RepMax();
@@ -57,12 +64,6 @@ class Entry {
   
   setDate(date) {
     this.#date = date;
-  }
-
-  saveString() {
-    const saveString = [String(this.#reps), String(this.#weight), this.getDate()];
-    console.log(saveString);
-    return saveString;
   }
 }
 

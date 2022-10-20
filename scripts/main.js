@@ -3,15 +3,15 @@ import Entry from './entry.js';
 const table = document.getElementById('table');
 const data = [];
 const entryButton = document.getElementById('add-entry-button');
-const savedData = 
 entryButton.addEventListener('click', addEntry)
+const lift = document.getElementById('lift').innerText;
 
 function generateDataArray() {
   for (let i = 1; i < 21; i++) {
-    if(localStorage.getItem(`${i}-weight`)) {
-      data.push(new Entry(i, localStorage.getItem(`${i}-weight`), new Date(localStorage.getItem(`${i}-date`))));
+    if(localStorage.getItem(`${i}-${lift}-weight`)) {
+      data.push(new Entry(i, lift, localStorage.getItem(`${i}-${lift}-weight`), new Date(localStorage.getItem(`${i}-${lift}-date`))));
     } else {
-      data.push(new Entry(i));
+      data.push(new Entry(i, lift));
     }
   }
 }
@@ -68,7 +68,7 @@ function addEntryToArray() {
   repsInput.value = 0;
   weightInput.value = 0;
   
-  const entry = new Entry(reps, weight, date);
+  const entry = new Entry(reps, lift, weight, date);
   data[reps - 1] = entry;
   return entry;
 }
@@ -84,8 +84,8 @@ function clearEntryFromTable(reps) {
 }
 
 function saveEntryToLocalStorage(entry) {
-  localStorage.setItem(`${entry.getReps()}-weight`, `${entry.getWeight()}`);
-  localStorage.setItem(`${entry.getReps()}-date`, `${entry.getDate()}`);
+  localStorage.setItem(`${entry.getReps()}-${entry.getLift()}-weight`, `${entry.getWeight()}`);
+  localStorage.setItem(`${entry.getReps()}-${entry.getLift()}-date`, `${entry.getDate()}`);
 }
 
 function addEntry() {
